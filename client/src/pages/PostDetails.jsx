@@ -89,7 +89,7 @@ const PostDetails = () => {
 
   }
 
-
+  console.log(IF+post.photo);
   
   return (
     <div>

@@ -1,0 +1,14 @@
+.Coverbackground {
+    background-image: url('../src/assets/27\ \(981\).png'); /* Set the path to your image */
+    /* background-image: url('../src/assets/Black\ and\ Silver\ Star\ Dust\ Love\ Facebook\ Cover.png'); Set the path to your image */
+
+    background-size: cover; /* Cover the entire area */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: center; /* Center the image */
+    min-height: 100vh; /* Optional: Set minimum height */
+  }
+  
+  .background {
+    background-attachment: fixed;
+  }
+  
