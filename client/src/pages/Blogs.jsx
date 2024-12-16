@@ -116,10 +116,13 @@ const Blogs = () => {
 
   return (
     <>
-    <Nav bgColor='black'/>
-    <h1 className='pl-10 pt-10 text-2xl text-white font-bold bg-gray-800'>
-    Sci-Fi + Fantasy
-    </h1>
+    <Nav bgColor='bg-[#E5E4E2]' ItemsColor='black' />
+    <div className="h-16 bg-gray-800">
+      <h1 className='flex items-center justify-center h-full pl-10 text-2xl text-white font-bold '>
+        Sci-Fi + Fantasy
+      </h1>
+    </div>
+
     <CardGrid 
       selectedCategory="Sci-Fi + Fantasy" 
       categories={categories} 

@@ -15,6 +15,7 @@ import LoginPage from './pages/LoginPage'
 import Submittable from './pages/Submittabel'
 import SignUp from './pages/Signup'
 import GuidelineAndSubmission from './pages/GuidelinesAndSumission'
+import Blog from './pages/Blog'
 
 
 const App = () => {
@@ -25,10 +26,15 @@ const App = () => {
       <Route exact path="/" element={<Home/>}/>
       <Route exact path="/contest" element={<ContestCard/>}/>
       <Route exact path="/blogs" element={<Blogs/>}/>
-      <Route exact path="/login" element={<LoginPage/>}/>
+      <Route exact path="/login" element={<Login/>}/>
       <Route exact path="/submittable" element={<Submittable/>}/>
       <Route exact path="/signup" element={<SignUp/>}/>
       <Route exact path="/guidelines" element={<GuidelineAndSubmission/>}/>
+      <Route exact path="/blog" element={<Blog/>}/>
+      {/* <Route exact path="/createpost" element={<CreatePost/>}/> */}
+
+      
+
 
       {/* <Route exact path="/login" element={<Login/>}/>
       <Route exact path="/register" element={<Register/>}/>

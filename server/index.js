@@ -10,6 +10,7 @@ const authRoute=require('./routes/auth')
 const userRoute=require('./routes/users')
 const postRoute=require('./routes/posts')
 const commentRoute=require('./routes/comments')
+const categoryRoute=require('./routes/categories')
 
 //database
 const connectDB=async()=>{
@@ -35,6 +36,7 @@ app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
 app.use("/api/posts",postRoute)
 app.use("/api/comments",commentRoute)
+app.use("/api/categories", categoryRoute);
 
 //image upload
 const storage=multer.diskStorage({

@@ -2,11 +2,13 @@ import React from 'react';
 import ContestCard from '../components/ContestCard'; // Assuming it's in the same folder
 import FeaturedWriting from '../components/FeaturedWriting';
 import Nav from '../components/Nav'
+import GeneralGuidelines from '../components/GeneralGuideline';
+import Footer from '../components/P_Footer';
 
 const ContestSection = () => {
   return (
     <>
-    <Nav ItemsColor='black' />
+    <Nav bgColor='bg-[#E5E4E2]' ItemsColor='black' />
     <div className="container mx-auto p-8">
       <h1 className="text-3xl font-bold text-center mb-8 text-orange-500">Current Contests</h1>
 
@@ -35,6 +37,9 @@ const ContestSection = () => {
       />
     </div>
     <FeaturedWriting/>
+    <GeneralGuidelines/>
+    <Footer/>
+
     </>
   );
 };

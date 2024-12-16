@@ -29,10 +29,10 @@ const FeaturedWriting = () => {
     <div className="container mx-auto p-8">
       <h1 className="text-3xl font-bold text-center mb-8 text-orange-500">Featured Writing: Always Free, Always Paid</h1>
       {sections.map((section, index) => (
-        <div key={index} className="mb-8 border-b border-gray-600 pb-4 text-center w-[40%] mx-auto">
+        <div key={index} className="mb-8 border-b border-gray-600 pb-4 text-left w-[80%] mx-auto">
           <h2 className="text-xl font-bold text-black">{section.title}</h2>
           <p className="text-black mt-2">{section.description}</p>
-          <a href='#' className='text-[#BF0000] hover:underline'>
+          <a href='#' className='mt-10 mb-10 text-[#BF0000] inline-block hover:underline'>
             Submit
           </a>
         </div>
