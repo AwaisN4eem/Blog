@@ -1,6 +1,5 @@
 
 import {Route, Routes} from 'react-router-dom'
-import Login from "./pages/Login"
 import Register from "./pages/Register"
 import PostDetails from './pages/PostDetails'
 import CreatePost from './pages/CreatePost'
@@ -18,6 +17,7 @@ import Submittable from './pages/Submittabel'
 import SignUp from './pages/Signup'
 import GuidelineAndSubmission from './pages/GuidelinesAndSumission'
 import Blog from './pages/Blog'
+import AdminDashboard from './pages/AdminDashboard'
 
 
 const App = () => {
@@ -33,6 +33,8 @@ const App = () => {
       <Route exact path="/guidelines" element={<GuidelineAndSubmission/>}/>
       <Route exact path="/blog" element={<Blog/>}/>
       <Route exact path="/login" element={<LoginPage/>}/>
+      <Route exact path="/admindashboard" element={<AdminDashboard/>}/>
+
 
 
       {/* previous version */}
