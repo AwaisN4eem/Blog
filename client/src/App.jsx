@@ -20,6 +20,8 @@ import Blog from './pages/Blog'
 import AdminDashboard from './pages/AdminDashboard'
 
 
+// mongodb+srv://ahmad:<db_password>@cluster0.naqyr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
 const App = () => {
 
   return (
@@ -34,7 +36,6 @@ const App = () => {
       <Route exact path="/blog" element={<Blog/>}/>
       <Route exact path="/login" element={<LoginPage/>}/>
       <Route exact path="/admindashboard" element={<AdminDashboard/>}/>
-
 
 
       {/* previous version */}

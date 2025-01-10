@@ -1,11 +1,17 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import GuidelinesDropdown from '../components/guidelinsDropdown'; // Correct the import path
 
-const ButtonAndGuideline = ({ title, sections }) => {
+const SubmissionBottonGuideline = ({ title, sections }) => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const navigate = useNavigate();
 
     const toggleDropdown = () => {
         setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const handleSubmissionClick = () => {
+        navigate('/submittable', { state: { title, sections } });
     };
 
     return (
@@ -49,14 +55,13 @@ const ButtonAndGuideline = ({ title, sections }) => {
 
                     {/* Submit Button */}
                     <div className="inline-block middle submit-column">
-                        <a
+                        <button
                             className="btn org-primary link-color-inverted bg-[#BF0000] text-white py-2 px-4 rounded hover:bg-opacity-30"
-                            target="_top"
-                            href="#"
+                            onClick={handleSubmissionClick}
                             aria-label="Submit work"
                         >
                             <span>Submit</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -69,4 +74,4 @@ const ButtonAndGuideline = ({ title, sections }) => {
     );
 };
 
-export default ButtonAndGuideline;
+export default SubmissionBottonGuideline;

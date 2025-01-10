@@ -28,6 +28,10 @@ const PostSchema=new mongoose.Schema({
         type:Array,
         
     },
+    isOriginal: {
+        type: Boolean,
+        required: true,
+    },
 },{timestamps:true})
 
 module.exports=mongoose.model("Post",PostSchema)

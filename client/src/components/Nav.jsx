@@ -100,7 +100,7 @@ const Navbar = ({ ItemsColor, bgColor }) => {
 
         {/* Right Section (Submit Button) */}
         <div className="flex">
-        <Link to= '/Submittable'>
+        <Link to= '/guidelines'>
           <button className="bg-[#BF0000] hover:bg-[#BF0000] text-sm text-white rounded-[50%] px-2 py-5">
             SUBMIT
           </button>

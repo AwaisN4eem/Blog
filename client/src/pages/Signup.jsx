@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { URL } from '../url';
+import { URL } from '../url'; // Ensure this import is correct
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [displayName, setDisplayName] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(URL + '/api/auth/register', {
+      const res = await axios.post(`${URL}/api/auth/register`, { // Ensure URL is correctly used
         email,
-        firstName,
-        lastName,
-        displayName,
+        username,
+        password,
       });
       navigate('/login');
     } catch (err) {
       setError(true);
-      console.log(err);
+      console.log(err.response ? err.response.data : err); // Modify this line to log the error response
     }
   };
 
@@ -54,32 +52,22 @@ const SignUp = () => {
           />
           <input
             type="text"
-            name="firstName"
-            id="first-name"
+            name="username"
+            id="username"
             className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:outline-none"
-            placeholder="First Name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             required
           />
           <input
-            type="text"
-            name="lastName"
-            id="last-name"
+            type="password"
+            name="password"
+            id="password"
             className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:outline-none"
-            placeholder="Last Name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-            required
-          />
-          <input
-            type="text"
-            name="displayName"
-            id="display-name"
-            className="w-full px-4 py-2 border-2 border-gray-300 rounded-md focus:outline-none"
-            placeholder="Display Name"
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <button

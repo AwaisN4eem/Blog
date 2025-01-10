@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { URL } from '../url';
+import { UserContext } from '../context/UserContext';
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(URL + "/api/auth/login", { email, password }, { withCredentials: true });
+      setUser(res.data);
+      navigate("/");
+    } catch (err) {
+      setError(true);
+      console.log(err);
+    }
+  };
+
   return (
     <section className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 shadow-md rounded-lg w-full max-w-md">
@@ -45,7 +66,7 @@ const LoginPage = () => {
 
         {/* Form */}
         <div className="mt-6">
-          <form method="POST" className="space-y-6">
+          <form method="POST" className="space-y-6" onSubmit={handleLogin}>
             {/* Email input */}
             <div>
               <label
@@ -64,6 +85,26 @@ const LoginPage = () => {
                 autoComplete="email"
                 spellCheck="false"
                 autoFocus
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            {/* Password input */}
+            <div>
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="password"
+              >
+                Password
+              </label>
+              <input
+                className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
+                name="password"
+                id="password"
+                type="password"
+                required
+                placeholder="Enter your password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 
@@ -77,6 +118,7 @@ const LoginPage = () => {
               </button>
             </div>
           </form>
+          {error && <p className="text-red-500 text-sm mt-2">Invalid email or password</p>}
         </div>
 
         {/* Footer: Sign-up link */}
@@ -90,33 +132,6 @@ const LoginPage = () => {
               Sign up
             </a>
           </p>
-        </div>
-
-        {/* Or divider */}
-        <div className="my-4 text-center relative">
-          <span className="bg-white px-2 text-gray-500">Or</span>
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-        </div>
-
-        {/* Google and Facebook Login */}
-        <div className="space-y-4">
-          {/* Google button */}
-          <div className="flex items-center justify-center ">
-            <button className="px-4 py-2 border flex gap-2 border-slate-200 w-full dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-            <FcGoogle className=' text-3xl'/>
-              <span>Continue with Google</span>
-            </button>
-          </div>
-
-          {/* Facebook button */}
-          <div className="flex items-center justify-center w-96">
-            <button className="px-4 py-2 border flex gap-2 border-slate-200 w-full dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
-            <FaFacebook className='text-3xl'/>
-              <span>Continue with Facebook</span>
-            </button>
-          </div>
         </div>
 
         {/* Help link */}

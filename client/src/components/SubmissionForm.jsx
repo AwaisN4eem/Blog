@@ -86,6 +86,14 @@ const SubmissionForm = ({ category }) => {
     }
   };
 
+  const handleCheckboxChange = (e, optionValue) => {
+    if (e.target.checked) {
+      setSubmissionType([optionValue]);
+    } else {
+      setSubmissionType([]);
+    }
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const post = {
@@ -93,6 +101,7 @@ const SubmissionForm = ({ category }) => {
       coverLetter,
       submissionType,
       categories: [category],
+      isOriginal: submissionType.includes('original'),
     };
 
     if (file) {
@@ -161,13 +170,7 @@ const SubmissionForm = ({ category }) => {
                     name={field.id}
                     value={option.value}
                     checked={submissionType.includes(option.value)}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        setSubmissionType([...submissionType, option.value]);
-                      } else {
-                        setSubmissionType(submissionType.filter((type) => type !== option.value));
-                      }
-                    }}
+                    onChange={(e) => handleCheckboxChange(e, option.value)}
                     className="rounded border-gray-300"
                   />
                   <label htmlFor={`${field.id}_${option.value}`} className="text-gray-600">

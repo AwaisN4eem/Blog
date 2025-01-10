@@ -3,7 +3,7 @@
 
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { URL } from "../url";
+import { URL } from "../url"; // Ensure this import is correct
 
 
 export const UserContext=createContext({})
@@ -20,12 +20,16 @@ export function UserContextProvider({children}){
     const getUser=async()=>{
       try{
         const res=await axios.get(URL+"/api/auth/refetch",{withCredentials:true})
-        // console.log(res.data)
+        console.log(res.data)
         setUser(res.data)
 
       }
       catch(err){
-        console.log(err)
+        if (err.response && err.response.status === 404) {
+          console.log("Endpoint not found: " + URL + "/api/auth/refetch");
+        } else {
+          console.log(err);
+        }
       }
     }
     

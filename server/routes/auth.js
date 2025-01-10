@@ -3,7 +3,10 @@ const router=express.Router()
 const User=require('../models/User')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+const cors = require('cors')
 
+// Enable CORS
+router.use(cors({ origin: 'http://localhost:5173', credentials: true }))
 
 //REGISTER
 router.post("/register",async(req,res)=>{
@@ -14,9 +17,9 @@ router.post("/register",async(req,res)=>{
         const newUser=new User({username,email,password:hashedPassword})
         const savedUser=await newUser.save()
         res.status(200).json(savedUser)
-
     }
     catch(err){
+        console.error(err) // Add this line to log the error
         res.status(500).json(err)
     }
 
@@ -60,14 +63,16 @@ router.get("/logout",async (req,res)=>{
 })
 
 //REFETCH USER
-router.get("/refetch", (req,res)=>{
-    const token=req.cookies.token
-    jwt.verify(token,process.env.SECRET,{},async (err,data)=>{
-        if(err){
-            return res.status(404).json(err)
+router.get("/refetch", (req, res) => {
+    const token = req.cookies.token;
+    console.log("Token received:", token); // Add this line to log the token
+    jwt.verify(token, process.env.SECRET, {}, async (err, data) => {
+        if (err) {
+            console.log("Token verification failed:", err); // Add this line to log the error
+            return res.status(404).json(err);
         }
-        res.status(200).json(data)
-    })
+        res.status(200).json(data);
+    });
 })
 
 
